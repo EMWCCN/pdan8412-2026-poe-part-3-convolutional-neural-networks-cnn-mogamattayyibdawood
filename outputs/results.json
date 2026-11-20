@@ -1,0 +1,312 @@
+{
+  "dataset": {
+    "files_loaded": 54740,
+    "fish_images": 27370,
+    "species_total": 23,
+    "species_kept": 16,
+    "species_dropped": [
+      "17 S. bilineata",
+      "18 Scaridae",
+      "19 P. vanicolensis",
+      "20 Z. cornutus",
+      "21 N. nigroris",
+      "22 B. undulatus",
+      "23 S. fuscescens"
+    ],
+    "imbalance_ratio": 757.0
+  },
+  "cleaning_log": [
+    {
+      "step": "Fish images loaded",
+      "rows_remaining": 27370,
+      "rows_removed": 0
+    },
+    {
+      "step": "Remove unreadable / corrupt files",
+      "rows_remaining": 27370,
+      "rows_removed": 0
+    },
+    {
+      "step": "Remove images smaller than 16px",
+      "rows_remaining": 27370,
+      "rows_removed": 0
+    },
+    {
+      "step": "Remove identical images with conflicting labels",
+      "rows_remaining": 27370,
+      "rows_removed": 0
+    },
+    {
+      "step": "Keep one copy of each exact duplicate",
+      "rows_remaining": 27056,
+      "rows_removed": 314
+    },
+    {
+      "step": "Keep species with >= 15 trajectories",
+      "rows_remaining": 26835,
+      "rows_removed": 221
+    }
+  ],
+  "quality_checks": [
+    {
+      "check": "Unreadable / corrupt files",
+      "count": 0
+    },
+    {
+      "check": "Groups of exact duplicate images",
+      "count": 314
+    },
+    {
+      "check": "Redundant duplicate copies",
+      "count": 314
+    },
+    {
+      "check": "Duplicates with conflicting labels",
+      "count": 0
+    },
+    {
+      "check": "Images smaller than 16px",
+      "count": 0
+    }
+  ],
+  "split_sizes": {
+    "train": 16101,
+    "val": 5367,
+    "test": 5367
+  },
+  "leakage": {
+    "random_split": 0.8239239798770263,
+    "grouped_split": 0.0
+  },
+  "anova": [
+    {
+      "descriptor": "mean_g",
+      "F_value": 919.3013581623406,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "brightness",
+      "F_value": 800.4840022103416,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "mean_b",
+      "F_value": 794.6043917318574,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "sharpness",
+      "F_value": 791.780659247052,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "contrast",
+      "F_value": 612.7962523163742,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "fish_area",
+      "F_value": 504.9979147249445,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "mean_r",
+      "F_value": 443.90190292854084,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "aspect",
+      "F_value": 210.3722416678924,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "height",
+      "F_value": 135.4638167300036,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    },
+    {
+      "descriptor": "width",
+      "F_value": 128.84329614145224,
+      "p_value": 0.0,
+      "selected by Spark (p<0.05)": true
+    }
+  ],
+  "spark_selected_descriptors": [
+    "mean_r",
+    "mean_g",
+    "mean_b",
+    "brightness",
+    "contrast",
+    "sharpness",
+    "width",
+    "height",
+    "aspect",
+    "fish_area"
+  ],
+  "metrics": [
+    {
+      "model": "Majority-class baseline",
+      "accuracy": 0.4441960126700205,
+      "balanced_accuracy": 0.0625,
+      "macro_precision": 0.027762250791876282,
+      "macro_recall": 0.0625,
+      "macro_f1": 0.03844665204489743,
+      "weighted_f1": 0.2732455926216821,
+      "cohen_kappa": 0.0,
+      "top3_accuracy": NaN
+    },
+    {
+      "model": "Logistic regression on descriptors",
+      "accuracy": 0.3853176821315446,
+      "balanced_accuracy": 0.4460972599376182,
+      "macro_precision": 0.2601668372939689,
+      "macro_recall": 0.4460972599376182,
+      "macro_f1": 0.254164438821486,
+      "weighted_f1": 0.45282829885178405,
+      "cohen_kappa": 0.2871350044779194,
+      "top3_accuracy": 0.6899571455189119
+    },
+    {
+      "model": "Model 1 (baseline)",
+      "accuracy": 0.9673933296068568,
+      "balanced_accuracy": 0.7098649481976157,
+      "macro_precision": 0.8731804167630672,
+      "macro_recall": 0.7098649481976157,
+      "macro_f1": 0.75317881250792,
+      "weighted_f1": 0.9623432851095917,
+      "cohen_kappa": 0.9555966934978355,
+      "top3_accuracy": 0.9962735233836407
+    },
+    {
+      "model": "Model 2 (retrained)",
+      "accuracy": 0.8665921371343395,
+      "balanced_accuracy": 0.7326822491812457,
+      "macro_precision": 0.6475184810651705,
+      "macro_recall": 0.7326822491812457,
+      "macro_f1": 0.6711814725765133,
+      "weighted_f1": 0.8760472474598702,
+      "cohen_kappa": 0.8261944054254444,
+      "top3_accuracy": 0.9763368734861189
+    }
+  ],
+  "mcnemar_p": 4.391611945393822e-103,
+  "epochs": {
+    "model1": 10,
+    "model2": 15
+  },
+  "train_minutes": {
+    "model1": 3.6,
+    "model2": 15.2
+  },
+  "params": {
+    "model1": 1144016,
+    "model2": 112496
+  },
+  "per_class_f1": [
+    {
+      "species": "01 D. reticulatus",
+      "Model 1": 0.973349733497335,
+      "Model 2": 0.8855653750283254,
+      "test images": 2384
+    },
+    {
+      "species": "02 P. dickii",
+      "Model 1": 0.9720149253731343,
+      "Model 2": 0.9000916590284143,
+      "test images": 533
+    },
+    {
+      "species": "03 C. chrysura",
+      "Model 1": 0.9750178443968593,
+      "Model 2": 0.7764277035236938,
+      "test images": 709
+    },
+    {
+      "species": "04 A. clarkii",
+      "Model 1": 0.9950433705080545,
+      "Model 2": 0.9623964308476737,
+      "test images": 808
+    },
+    {
+      "species": "05 C. lunulatus",
+      "Model 1": 0.9931305201177625,
+      "Model 2": 0.9623015873015873,
+      "test images": 507
+    },
+    {
+      "species": "06 C. trifascialis",
+      "Model 1": 0.5660377358490566,
+      "Model 2": 0.6857142857142857,
+      "test images": 38
+    },
+    {
+      "species": "07 M. kuntee",
+      "Model 1": 0.9659090909090909,
+      "Model 2": 0.8415841584158416,
+      "test images": 89
+    },
+    {
+      "species": "08 A. nigrofuscus",
+      "Model 1": 0.2857142857142857,
+      "Model 2": 0.41935483870967744,
+      "test images": 42
+    },
+    {
+      "species": "09 H. fasciatus",
+      "Model 1": 0.8484848484848485,
+      "Model 2": 0.6736842105263158,
+      "test images": 48
+    },
+    {
+      "species": "10 N. sammara",
+      "Model 1": 0.9833333333333333,
+      "Model 2": 0.9147286821705426,
+      "test images": 60
+    },
+    {
+      "species": "11 A. vaigiensis",
+      "Model 1": 0.625,
+      "Model 2": 0.27956989247311825,
+      "test images": 20
+    },
+    {
+      "species": "12 C. valentini",
+      "Model 1": 0.7450980392156863,
+      "Model 2": 0.5396825396825397,
+      "test images": 29
+    },
+    {
+      "species": "13 P. moluccensis",
+      "Model 1": 0.9,
+      "Model 2": 0.7692307692307693,
+      "test images": 33
+    },
+    {
+      "species": "14 Z. scopas",
+      "Model 1": 0.2727272727272727,
+      "Model 2": 0.2,
+      "test images": 17
+    },
+    {
+      "species": "15 H. melapterus",
+      "Model 1": 0.0,
+      "Model 2": 0.0,
+      "test images": 8
+    },
+    {
+      "species": "16 L. fulvus",
+      "Model 1": 0.95,
+      "Model 2": 0.9285714285714286,
+      "test images": 42
+    }
+  ]
+}
